@@ -4,6 +4,7 @@ import co.com.pruebarappi.demoblazestore.pages.CarritoComprasPage;
 import co.com.pruebarappi.demoblazestore.pages.DetalleProductoPage;
 import co.com.pruebarappi.demoblazestore.pages.PaginaPrincipalPage;
 import cucumber.api.DataTable;
+import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.fluentlenium.core.annotation.Page;
 import org.hamcrest.MatcherAssert;
@@ -21,10 +22,12 @@ public class CompraProductoStep extends ScenarioSteps {
     @Page
     CarritoComprasPage carritoComprasPage;
 
+    @Step
     public void adicionarProductoAlCarrito(){
         detalleProductoPage.adicionarProductoAlCarrito();
     }
 
+    @Step
     public void finalizarCompraProducto(DataTable datosCompra){
         paginaPrincipalPage.seleccionarOpcionMenuPrincipal(OPCION_CART);
         carritoComprasPage.realizarPedidoProducto();
@@ -37,6 +40,7 @@ public class CompraProductoStep extends ScenarioSteps {
         carritoComprasPage.confirmarCompra();
     }
 
+    @Step
     public void validarCompraExitosa() {
         MatcherAssert.assertThat("Error: Se esperaba el mensaje de respuesta exitosa: <" + MENSAJE_EXITOSO_COMPRA + "> \npero se obtuvo el mensaje: <" + carritoComprasPage.obtenerMensajeCompra() + ">.",
                 MENSAJE_EXITOSO_COMPRA.equals(carritoComprasPage.obtenerMensajeCompra()));
