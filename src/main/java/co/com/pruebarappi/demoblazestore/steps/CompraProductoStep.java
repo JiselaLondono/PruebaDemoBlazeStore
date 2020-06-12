@@ -25,11 +25,11 @@ public class CompraProductoStep extends ScenarioSteps {
     @Step
     public void adicionarProductoAlCarrito(){
         detalleProductoPage.adicionarProductoAlCarrito();
+        paginaPrincipalPage.seleccionarOpcionMenuPrincipal(OPCION_CART);
     }
 
     @Step
     public void finalizarCompraProducto(DataTable datosCompra){
-        paginaPrincipalPage.seleccionarOpcionMenuPrincipal(OPCION_CART);
         carritoComprasPage.realizarPedidoProducto();
         carritoComprasPage.ingresarNombre(datosCompra.cells(LISTA_DATOS).get(FILA_DATOS).get(0));
         carritoComprasPage.ingresarPais(datosCompra.cells(LISTA_DATOS).get(FILA_DATOS).get(1));
@@ -42,7 +42,13 @@ public class CompraProductoStep extends ScenarioSteps {
 
     @Step
     public void validarCompraExitosa() {
-        MatcherAssert.assertThat("Error: Se esperaba el mensaje de respuesta exitosa: <" + MENSAJE_EXITOSO_COMPRA + "> \npero se obtuvo el mensaje: <" + carritoComprasPage.obtenerMensajeCompra() + ">.",
+        MatcherAssert.assertThat("Error: Se esperaba el mensaje de respuesta exitosa: <" + MENSAJE_EXITOSO_COMPRA + ">, pero se obtuvo el mensaje: <" + carritoComprasPage.obtenerMensajeCompra() + ">.",
                 MENSAJE_EXITOSO_COMPRA.equals(carritoComprasPage.obtenerMensajeCompra()));
+    }
+
+    @Step
+    public void validarInformacionCarrito(String producto) {
+        MatcherAssert.assertThat("Error: Se esperaba el siguiente producto en el carrito: <" + producto + ">, pero se obtuvo el siguiente: <" + carritoComprasPage.obtenerInformacionProductoCarrito() + ">.",
+                producto.equals(carritoComprasPage.obtenerInformacionProductoCarrito()));
     }
 }

@@ -16,7 +16,7 @@ public class DetalleProductoPage extends PageObject {
     }
 
     public void adicionarProductoAlCarrito(){
-        btnAdicionarAlCarrito.waitUntilVisible().click();
+        btnAdicionarAlCarrito.waitUntilClickable().click();
         realizarEsperar(2000);
         Alert alert = getDriver().switchTo().alert();
         alert.accept();

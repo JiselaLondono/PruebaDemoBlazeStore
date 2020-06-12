@@ -31,6 +31,9 @@ public class CarritoComprasPage extends PageObject {
     @FindBy(xpath = "//div[@class='modal-content']//button[contains(text(),'Purchase')]")
     WebElementFacade btnComprar;
 
+    @FindBy(xpath = "//tbody[@id='tbodyid']//tr[@class='success']/td[2]")
+    WebElementFacade lblInformacionProductoEnCarrito;
+
     @FindBy(xpath = "//div[@class='sweet-alert  showSweetAlert visible']//h2")
     WebElementFacade lblMensajeExitoso;
 
@@ -38,8 +41,12 @@ public class CarritoComprasPage extends PageObject {
         super(driver);
     }
 
+    public String obtenerInformacionProductoCarrito(){
+        return lblInformacionProductoEnCarrito.getText();
+    }
+
     public void realizarPedidoProducto(){
-        btnRealizarPedido.waitUntilEnabled().waitUntilVisible().waitUntilClickable().click();
+        btnRealizarPedido.waitUntilClickable().click();
     }
 
     public void ingresarNombre(String nombre){

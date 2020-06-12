@@ -24,11 +24,12 @@ public class CompraProductoDemoblazeDefinition {
     @Cuando("^procedo con la compra del producto (.*) de la categoría (.*)$")
     public void iniciarCompraProducto(String producto, String categoria) {
         seleccionProductoStep.seleccionarProducto(categoria, producto);
+        compraProductoStep.adicionarProductoAlCarrito();
+        compraProductoStep.validarInformacionCarrito(producto);
     }
 
-    @Cuando("^diligencio los siguientes datos de compra$")
+    @Cuando("^diligencio los siguientes datos de compra:$")
     public void diligenciarDatosCompra(DataTable datosCompra){
-        compraProductoStep.adicionarProductoAlCarrito();
         compraProductoStep.finalizarCompraProducto(datosCompra);
     }
 

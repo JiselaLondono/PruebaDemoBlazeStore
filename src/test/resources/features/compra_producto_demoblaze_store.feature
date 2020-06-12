@@ -8,7 +8,7 @@
   Esquema del escenario: Realización de compra de producto en DemoBlaze Store
     Dado que me encuentro en la página de ventas de DemoBlaze Store
     Cuando procedo con la compra del producto <Producto> de la categoría <Categoria>
-    Y diligencio los siguientes datos de compra
+    Y diligencio los siguientes datos de compra:
     |Nombre|Pais    |Ciudad  |Tajerta|Mes|Anio|
     |Jisela|Colombia|Medellín|1234   | 5 |2010|
     Entonces la compra se efectúa de manera exitosa
